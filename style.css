@@ -1,0 +1,36 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat';
+}
+
+#navy{
+    background-color: rgba(0, 0, 0, 0.354);
+    background-blend-mode: darken;
+    background-image: url('assets/sfondo.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+}
+
+#navy li > a.nav-link{
+    color: white;
+}
+
+#logo-nav{
+    width: 100%;
+    max-width: 50px;
+}
+
+#search-container{
+    top: 20%;
+}
+
+#search-container select{
+    max-width: 100px;
+}
