@@ -58,6 +58,7 @@ function initResults(query, type) {
 function createCard(image, type) {
 
     let col = document.createElement('div');
+    col.classList.add('col');
     let divCard = document.createElement('div');
     divCard.classList = ['card col p-0 border'];
     let cardBody = document.createElement('div');
@@ -73,7 +74,7 @@ function createCard(image, type) {
         photo.style.maxHeight = '200px';
         photo.style.objectFit = 'contain';
     } else {
-        console.log(type)
+        
         url = image.video_files[0].link;
         photo = document.createElement('video');
         photo.src = image.video_files[0].link;
@@ -87,13 +88,13 @@ function createCard(image, type) {
 
     cardBody.appendChild(photo);
     cardBody.style.overflow = 'hidden';
-    divCard.append(cardBody);
+    divCard.appendChild(cardBody);
+    col.appendChild(divCard);
+    
     divCard.style.cursor = 'pointer';
     divCard.addEventListener('click', () => {
         window.location.href = url;
     })
-    col.classList.add('col');
-    col.appendChild(divCard);
     return col;
 
 
