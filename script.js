@@ -3,7 +3,7 @@ function initResults(query, type) {
     resetcontent();
     if (query && query !== '') {
 
-        fetch(`https://api.pexels.com/${type}/search?query=${query.toLowerCase()}`, {
+        fetch(`https://api.pexels.com/${type}/search?query=${query.toLowerCase()}&per_page=100`, {
             headers: {
                 'Authorization': 'm2c0WnK2IYsbT3W08OUpKdiR7VG52uBffP8nDQTTGVZN3IJdC5do1uie',
                 "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function initResults(query, type) {
 
     } else {
 
-        fetch(`https://api.pexels.com/${type}/search?query=dogs`, {
+        fetch(`https://api.pexels.com/${type}/search?query=dogs&per_page=100`, {
             headers: {
                 'Authorization': 'm2c0WnK2IYsbT3W08OUpKdiR7VG52uBffP8nDQTTGVZN3IJdC5do1uie',
                 "Content-Type": "application/json",
@@ -57,8 +57,9 @@ function initResults(query, type) {
 
 function createCard(image, type) {
 
+    let col = document.createElement('div');
     let divCard = document.createElement('div');
-    divCard.classList = ['card col-6 col-md-4 col-xl-2 p-0 border border-0'];
+    divCard.classList = ['card col p-0 border'];
     let cardBody = document.createElement('div');
     cardBody.classList = ['card-body p-0 d-flex justify-content-center'];
     let photo;
@@ -68,9 +69,9 @@ function createCard(image, type) {
         photo = document.createElement('img');
         photo.src = url;
         photo.alt = image.alt;
-        photo.style.width = 'auto';
-        photo.style.height = '180px';
-        photo.style.objectFit = 'cover';
+        photo.style.maxWidth = 'auto';
+        photo.style.maxHeight = '200px';
+        photo.style.objectFit = 'contain';
     } else {
         console.log(type)
         url = image.video_files[0].link;
@@ -83,12 +84,15 @@ function createCard(image, type) {
     }
 
     cardBody.appendChild(photo);
+    cardBody.style.overflow = 'hidden';
     divCard.append(cardBody);
     divCard.style.cursor = 'pointer';
     divCard.addEventListener('click', () => {
         window.location.href = url;
     })
-    return divCard;
+    col.classList.add('col');
+    col.appendChild(divCard);
+    return col;
 
 
 }
@@ -110,4 +114,5 @@ let pulsante = document.getElementById('button-search');
 pulsante.addEventListener('click', () => {
     let query = document.getElementById('input-search');
     initResults(query.value, select.value);
+    query.value = '';
 })
