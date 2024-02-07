@@ -65,7 +65,7 @@ function createCard(image, type) {
     let photo;
     let url;
     if (type == 'v1') {
-        url = image.src.original;
+        url = image.src.tiny;
         photo = document.createElement('img');
         photo.src = url;
         photo.alt = image.alt;
@@ -82,6 +82,8 @@ function createCard(image, type) {
         photo.style.height = '180px';
         photo.style.objectFit = 'cover';
     }
+
+    
 
     cardBody.appendChild(photo);
     cardBody.style.overflow = 'hidden';
